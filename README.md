@@ -1,9 +1,5 @@
-# DockerTutorial
-Docker tutorial
-
-
 # General docker commands
-```bash
+```shell
  docker version
  
 ```
@@ -11,7 +7,7 @@ Docker tutorial
 # docker system commands
 
 ##  Display system-wide information
-```bash
+```shell
  docker system info
  
  # simplified as 
@@ -19,7 +15,7 @@ Docker tutorial
 ``` 
 
 ## space on disk / caches 
-```bash
+```shell
  docker system df
  
  # when formatting needed
@@ -30,7 +26,7 @@ Docker tutorial
 # Docker images 
 
 ## list images
-```bash
+```shell
 docker image ls 
 
 ## short version
@@ -39,7 +35,7 @@ docker images
 
 ## install/download an image from dockerhub 
 
-```bash
+```shell
  docker pull image_name:image:tag
  docker pull postgres
  docker pull alpine:latest
@@ -47,29 +43,29 @@ docker images
 
 ## Run an image
 ### in detached mode
-```bash
+```shell
 docker run -d
 ```
 
 ## run in interactive mode
-```bash
+```shell
 docker run -it 
 ```
 
 ## connect to a running docker and run bash on it
-```bash
+```shell
 docker exec -it containerId bash
 ```
 
 ## exit from interactive mode without stopping the container
 CTRL+P followed by CTRL+Q
 
-```bash
+```shell
 docker run -d --name whatever -p 80:8080 tomcat:latest
 ```
 
 ## remove image
-```bash
+```shell
 docker image rm ImageId
 
 ## short version
@@ -77,28 +73,28 @@ docker rmi ImageId
 ```
 
 ## remove all images
-```bash
+```shell
 docker image rm $(docker images -q)
 ```
 
 # Docker container commands
 
 ## List running containers
-```bash
+```shell
 docker ps
 docker ps -a - list of all containers ( running or stopped)
 docker ps -aq - list of all ids of the containers ( running or stopped)
 ```
 
 ## Start/Stop/Delete a containter
-```bash
+```shell
 docker rm containerId - removes a container 
 docker stop containerId - stops a container
 docker start containerId - starts a container
 ```
 
 ## Useful docker container commands 
-```bash
+```shell
 
 # stop all docker containers 
 docker stop $(docker ps -aq)
@@ -114,31 +110,34 @@ docker inspect containerId
 ```
 
 # Docker logs ( stdout / stderr)
-```bash
+```shell
 	docker logs containerId
 ```
 
 ## tail like logs 
-```bash
+```shell
 	docker logs -f containerId
 ```
 
 # Creating a Dockerfile
 
-```bash
+```shell
 # assuming you have a Dockerimage in your current dir
 docker build -t myimage . 
 ```
 
 # Dockerfile contents
-FROM
-COPY 
-WORKDIR
-RUN 	- executes at image build time (not at the container runtime)
-CMD     - executes at container start 
-		- if multiple CMD entries only the last one is evaluated
-ENTRYPOINT - executes at container start
-		   - if ENTRYPOINT and CMD both present than CMD will only provide arguments to ENTRYPOINT
+* FROM
+* COPY 
+* WORKDIR
+* RUN 	
+	- executes at image build time (not at the container runtime)
+* CMD     
+	- executes at container start 
+	- if multiple CMD entries only the last one is evaluated
+* ENTRYPOINT 
+	- executes at container start
+	- if ENTRYPOINT and CMD both present than CMD will only provide arguments to ENTRYPOINT
 
 
 
